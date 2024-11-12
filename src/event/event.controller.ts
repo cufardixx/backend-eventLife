@@ -14,11 +14,13 @@ export const createEvent = async (req: CustomRequest, res: Response) => {
         const user = await User.findOneBy({ id: req.user!.id });
         if (!user) return res.status(404).json({ message: "User no encontrado" });
 
+        // Buscar la categoría en la base de datos usando el categoryId
         const category = await Category.findOneBy({ id: categoryId });
         if (!category) return res.status(404).json({ message: "Category no encontrada" });
 
         const userName = user.firstname;
         const categorName = category.name
+
         const userId = user.id;
 
 
@@ -89,7 +91,6 @@ export const getEventsByUser = async (req: CustomRequest, res: Response) => {
 
         res.json(eventos);
     } catch (error) {
-        console.error('Error al obtener eventos:', error);
         res.status(500).json({ message: 'Error al obtener eventos' });
     }
 }

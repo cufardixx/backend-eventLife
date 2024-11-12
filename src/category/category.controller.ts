@@ -25,7 +25,6 @@ export const getCategories = async (req: Request, res: Response) => {
     }
 };
 
-
 export const getCategoryByID = async (req: Request, res: Response) => {
     try {
       const { id } = req.params;

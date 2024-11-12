@@ -65,12 +65,7 @@ export class Event extends BaseEntity {
     tickets: Ticket[];
 
     @ManyToOne(() => Category, category => category.events)
-
-    
-    @JoinColumn({name: "category_name"})
     category: Category;
-
-
 
     @Column()
     categoria_name: string;

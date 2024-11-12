@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import { AnyZodObject, ZodError } from "zod";
 
 
-
+// Función que devuelve un middleware para validar esquemas
 export const schemaValidation =
   (schema: AnyZodObject) =>
   (req: Request, res: Response, next: NextFunction) => {

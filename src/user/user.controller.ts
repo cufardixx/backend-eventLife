@@ -97,17 +97,19 @@ export const signinUser = async (req: Request, res: Response) => {
   const { email, password } = req.body;
 
   try {
+    // Validar email
     const user = await User.findOneBy({ email });
     if (!user) {
       return res.status(400).json({ message: 'Invalid email or password' });
     }
 
+    // Validar contraseña
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) {
       return res.status(401).json({ message: 'Invalid email or password' });
     }
 
-    //token con id y rol
+    // Generar token con id
     const tokenSession = await tokenSing(user)
 
     return res.status(200).json({ "token": tokenSession })
@@ -125,6 +127,7 @@ export const signinUser = async (req: Request, res: Response) => {
 export const profile = async (req: CustomRequest, res: Response) => {
   try {
     const id = req.user!.id
+    console.log(id);
     
     const user = await User.findOneBy({ id: id });
     if (!user) return res.status(404).json('No User found');

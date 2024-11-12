@@ -22,11 +22,14 @@ export class Ticket extends BaseEntity{
 
     @Column()
     eventId: number;
+    
+    @Column()
+    titleEvent: string;
 
     @Column()
     userId: number;
 
-    @Column()
+    @Column({type: "text"})
     qrCode: string;
 
 
