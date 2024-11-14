@@ -21,7 +21,7 @@ router.post("/login", schemaValidation(signinUserSchema), signinUser)
 router.post("/register", schemaValidation(signupUserSchema), signupUser)
 
 
-router.get("/", getUsers)
+router.get("/",checkRoleAuth(["admin"]),checkAuthToken, getUsers)
 
 
 
